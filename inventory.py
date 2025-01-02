@@ -63,8 +63,10 @@ def kurangi_stok_iteratif(inventori, barang, jumlah):
 # Fungsi untuk mengurangi stok secara rekursif
 def kurangi_stok_rekursif(inventori, barang, jumlah):
     if barang in inventori:
-        if inventori[barang]['stok'] >= jumlah:
-            inventori[barang]['stok'] -= jumlah
+        if inventori[barang]['stok'] > 0 and jumlah > 0:
+            inventori[barang]['stok'] -= 1
+            return kurangi_stok_rekursif(inventori, barang, jumlah - 1)
+        elif jumlah == 0:
             return True
     return False
 
